@@ -1,0 +1,1 @@
+hud.c lines 66 and 67 control background and text color respectively, scale of 8-31

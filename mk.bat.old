@@ -1,0 +1,24 @@
+@echo off
+
+gbfs gsmsongs.gbfs gsms\*
+if errorlevel 1 goto end
+
+bin2s a2.chr > chr.s
+
+rem once we have 3.3.x, try turning on -fnew-ra
+
+arm-agb-elf-gcc -Wall -O3 -marm -mthumb-interwork -c gsmcode.c -o gsm.iwram.o
+if errorlevel 1 goto end
+
+arm-agb-elf-gcc -Wall -O3 -marm -mthumb-interwork -c isr.c -o isr.iwram.o
+if errorlevel 1 goto end
+
+arm-agb-elf-gcc -Wall -O3 -mthumb -mthumb-interwork gsmplay.c hud.c gsm.iwram.o isr.iwram.o chr.s libgbfs.c -o x.elf
+if errorlevel 1 goto end
+
+arm-agb-elf-objcopy -O binary x.elf x.bin
+padbin 256 x.bin
+copy /b x.bin+gsmsongs.gbfs gsm.gba
+
+del x.bin
+:end

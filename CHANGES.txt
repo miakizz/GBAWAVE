@@ -1,0 +1,18 @@
+GSM Player 2004-08-23:
+  hud: switch from 6x8 to 8x16 pixel fonts; now much less ugly
+  player: switch to devkitARM R8
+  win32: improved Go.bat to take advantage of Win2K's better FOR command;
+         Windows 98/ME users should use Go-Win9x.bat
+
+GSM Player 2004-06-27:
+  codec: unroll some loops; now CPU use is about 50 percent
+  docs: clarify the result of the conversion
+  player: first crack at fixing exit-to-menu
+
+GSM Player 2004-03-06:
+  initial release of ported codec and player
+
+Future:
+  cubic interpolation and noise-shaped dithering of audio
+  long file name extensions to player
+  even less ugly interface
